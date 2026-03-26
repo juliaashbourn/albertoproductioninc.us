@@ -1,128 +1,458 @@
-<!DOCTYPE html>
-<html lang="fr">
+from pathlib import Path
+
+html_path = Path("/mnt/data/alberto_production_inc_profile_site.html")
+
+images = [
+    "https://ichef.bbci.co.uk/images/ic/1200x675/p06dmz45.jpg",
+    "https://www.kino-teatr.ru/news/27466/243316.jpg",
+    "https://vitrina.ai/wp-content/uploads/2024/08/Movie-Production.webp",
+    "https://www.jjagency.co/wp-content/uploads/2023/01/dubai-abu-dhabi-uae-video-production-services.webp",
+    "https://i.ytimg.com/vi/ECSfMxHAFpI/maxresdefault.jpg",
+]
+
+gallery_html = "\n".join(
+    f'''<figure class="gallery-card">
+          <img src="{src}" alt="Film and video production visual {i+1}">
+        </figure>'''
+    for i, src in enumerate(images)
+)
+
+html = f"""<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HUNANIMA - Machines Agricoles Simples</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALBERTO PRODUCTION INC</title>
+  <meta name="description" content="Company overview style website for ALBERTO PRODUCTION INC." />
   <style>
-    body {
+    :root {{
+      --bg: #f6f1eb;
+      --surface: #ffffff;
+      --surface-soft: #fdf7f1;
+      --line: #e6d6c7;
+      --text: #1f1a17;
+      --muted: #72665c;
+      --primary: #7a4b2f;
+      --primary-soft: #b88458;
+      --accent: #3f6f7b;
+      --shadow: 0 18px 42px rgba(80, 58, 40, 0.10);
+      --radius: 18px;
+      --max: 1280px;
+    }}
+
+    * {{ box-sizing: border-box; }}
+    html {{ scroll-behavior: smooth; }}
+    body {{
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fefefe;
-      color: #333;
-    }
-    header {
-      background-color: #2e7d32; /* Vert foncé */
-      color: #fdd835; /* Jaune vif */
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-    header p {
-      margin: 5px 0 0;
-      font-size: 1.2em;
-    }
-    nav {
-      background-color: #fdd835;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #2e7d32;
-    }
-    .hero {
-      background: url('https://i.pinimg.com/550x/a9/df/51/a9df5172829f8c05f5b92f97553d41ae.jpg') no-repeat center center/cover;
-      height: 350px;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fbf8f4 0%, var(--bg) 100%);
+      line-height: 1.6;
+    }}
+
+    a {{ color: inherit; text-decoration: none; }}
+    img {{ display: block; max-width: 100%; }}
+
+    .topbar {{
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      color: #7b8e99;
+    }}
+
+    .container {{
+      width: min(var(--max), calc(100% - 34px));
+      margin: 0 auto;
+    }}
+
+    .crumbs {{
+      padding: 12px 0;
       display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }}
+
+    .crumbs span.sep {{ color: #b7c2c8; }}
+
+    .hero {{
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }}
+
+    .hero-inner {{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 26px;
+      padding: 34px 0 26px;
+    }}
+
+    .company-title {{
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 500;
+      letter-spacing: .01em;
+      margin: 0;
+    }}
+
+    .hero-actions {{
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: flex-end;
+      min-width: 320px;
+    }}
+
+    .cta {{
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      text-shadow: 2px 2px 4px #000;
-      font-size: 2em;
-    }
-    section {
-      padding: 50px 20px;
+      min-height: 64px;
+      padding: 0 26px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 14px;
+      font-size: 20px;
+      font-weight: 600;
+      box-shadow: var(--shadow);
       text-align: center;
-    }
-    section h2 {
-      color: #2e7d32;
-      margin-bottom: 20px;
-    }
-    .gallery {
+    }}
+
+    .claim {{
+      color: var(--accent);
+      font-size: 18px;
+    }}
+
+    .tabs {{
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }}
+
+    .tabs-inner {{
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }}
+
+    .tab {{
+      padding: 22px 8px 19px;
+      color: #9a9a9a;
+      font-size: 18px;
+      border-bottom: 3px solid transparent;
+    }}
+
+    .tab.active {{
+      color: var(--accent);
+      border-color: var(--accent);
+    }}
+
+    .layout {{
+      padding: 34px 0 42px;
+    }}
+
+    .panel {{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.03);
+      padding: 34px 34px 28px;
+    }}
+
+    h2 {{
+      margin: 0 0 20px;
+      font-size: 2.15rem;
+      line-height: 1.1;
+    }}
+
+    .divider {{
+      height: 1px;
+      background: var(--line);
+      margin-bottom: 28px;
+    }}
+
+    .overview-grid {{
+      display: grid;
+      grid-template-columns: 1.15fr .95fr;
+      gap: 34px;
+    }}
+
+    .left-col, .right-col {{
+      display: grid;
+      gap: 22px;
+      align-content: start;
+    }}
+
+    .row-label {{
+      font-size: 15px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 6px;
+    }}
+
+    .value-strong {{
+      font-size: 1.1rem;
+      font-weight: 600;
+    }}
+
+    .industry-links {{
       display: flex;
       flex-wrap: wrap;
+      gap: 10px 14px;
+    }}
+
+    .industry-links a {{
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }}
+
+    .quick-link {{
+      color: var(--accent);
+      font-size: 17px;
+    }}
+
+    .contact-box {{
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }}
+
+    .contact-box + .contact-box {{
+      margin-top: 14px;
+    }}
+
+    .contact-box .value {{
+      font-size: 1.05rem;
+      font-weight: 600;
+    }}
+
+    .phone-pill {{
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      gap: 20px;
-    }
-    .gallery img {
-      width: 280px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    footer {
-      background-color: #2e7d32;
+      padding: 16px 28px;
+      border-radius: 999px;
+      background: var(--accent);
       color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }}
+
+    .gallery-wrap {{
+      margin-top: 34px;
+    }}
+
+    .gallery-title {{
+      margin-bottom: 18px;
+      font-size: 1.6rem;
+    }}
+
+    .gallery {{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }}
+
+    .gallery-card {{
+      margin: 0;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      min-height: 240px;
+    }}
+
+    .gallery-card img {{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }}
+
+    .privacy {{
+      margin-top: 36px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }}
+
+    .privacy h3 {{
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+    }}
+
+    .privacy p {{
+      margin: 0;
+      color: var(--muted);
+    }}
+
+    footer {{
+      padding: 26px 0 44px;
+      color: var(--muted);
+      font-size: .95rem;
       text-align: center;
-      padding: 20px;
-    }
-    footer p {
-      margin: 5px 0;
-    }
+    }}
+
+    @media (max-width: 960px) {{
+      .hero-inner,
+      .overview-grid {{
+        grid-template-columns: 1fr;
+        display: grid;
+      }}
+
+      .hero-actions {{
+        align-items: flex-start;
+        min-width: 0;
+      }}
+
+      .gallery {{
+        grid-template-columns: 1fr 1fr;
+      }}
+    }}
+
+    @media (max-width: 640px) {{
+      .container {{
+        width: min(var(--max), calc(100% - 20px));
+      }}
+
+      .panel {{
+        padding: 22px 18px;
+      }}
+
+      .tab {{
+        font-size: 16px;
+      }}
+
+      .gallery {{
+        grid-template-columns: 1fr;
+      }}
+
+      .cta {{
+        width: 100%;
+        font-size: 18px;
+      }}
+    }}
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>HUNANIMA</h1>
-    <p>Machines Agricoles Simples et Fiables</p>
-  </header>
-
-  <nav>
-    <a href="#about">À propos</a>
-    <a href="#gallery">Galerie</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <div class="hero">
-    <p>Votre partenaire pour des machines agricoles durables</p>
+  <div class="topbar">
+    <div class="container crumbs">
+      <span>Motion Picture and Video Industries</span>
+      <span class="sep">/</span>
+      <span>United States</span>
+      <span class="sep">/</span>
+      <span>Florida</span>
+      <span class="sep">/</span>
+      <span>Kissimmee</span>
+      <span class="sep">/</span>
+      <span>ALBERTO PRODUCTION INC</span>
+    </div>
   </div>
 
-  <section id="about">
-    <h2>À propos de nous</h2>
-    <p>
-      Chez <strong>HUNANIMA</strong>, nous nous spécialisons dans la fabrication et la distribution de 
-      <strong>machines agricoles simples</strong> pour faciliter le travail des agriculteurs. 
-      Nos solutions combinent <em>durabilité, efficacité et innovation</em> afin de répondre aux besoins de toutes les exploitations.
-    </p>
-  </section>
-
-  <section id="gallery">
-    <h2>Nos Machines</h2>
-    <div class="gallery">
-      <img src="http://ogden_images.s3.amazonaws.com/www.motherearthnews.com/images/2014/11/22234423/Boaz-Mini-Combine-jpg.jpg" alt="Mini moissonneuse">
-      <img src="https://krs-agro.ru/products/zagotovka_kormov/elho/19/7.jpg" alt="Machine agricole">
-      <img src="https://img.mod-network.net/files/images/6218ac69d37fb/SimpleFarmSilov1000_6222.jpg" alt="Équipement agricole simple">
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h1 class="company-title">ALBERTO PRODUCTION INC</h1>
+      </div>
+      <div class="hero-actions">
+        <a class="cta" href="#contact">View Company Details</a>
+        <a class="claim" href="#overview">Company Overview</a>
+      </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contactez-nous</h2>
-    <p><strong>Email :</strong> admin@tyusex.shop</p>
-    <p><strong>Téléphone :</strong> +33 7 38 50 26 36</p>
-    <p><strong>Adresse :</strong> Avenue Baratier, Montmorency, 95160, France</p>
-  </section>
+  <nav class="tabs">
+    <div class="container tabs-inner">
+      <a class="tab active" href="#overview">Overview</a>
+      <a class="tab" href="#contacts">Contacts</a>
+      <a class="tab" href="#gallery">Gallery</a>
+      <a class="tab" href="#industries">Industries</a>
+      <a class="tab" href="#privacy">Site Notice</a>
+    </div>
+  </nav>
+
+  <main class="layout">
+    <div class="container">
+      <section id="overview" class="panel">
+        <h2>Overview</h2>
+        <div class="divider"></div>
+
+        <div class="overview-grid">
+          <div class="left-col">
+            <div>
+              <div class="row-label">Company profile</div>
+              <div class="value-strong">Independent business profile for ALBERTO PRODUCTION INC.</div>
+            </div>
+
+            <div>
+              <div class="row-label">Primary contact</div>
+              <div class="value-strong">info@albertoproductioninc.us</div>
+              <a class="quick-link" href="#contacts">See contact details</a>
+            </div>
+
+            <div id="industries">
+              <div class="row-label">Industry</div>
+              <div class="industry-links">
+                <a href="#">Motion Picture and Video Industries</a>
+                <a href="#">Motion Picture and Sound Recording Industries</a>
+                <a href="#">Information</a>
+                <a href="#">Motion picture and tape distribution</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-col" id="contacts">
+            <div class="contact-box">
+              <div class="row-label">Address</div>
+              <div class="value">1134 Cobblestone Cir APT E Kissimmee, FL, 34744-5594 United States</div>
+            </div>
+
+            <div class="contact-box">
+              <div class="row-label">Email</div>
+              <div class="value"><a href="mailto:info@albertoproductioninc.us">info@albertoproductioninc.us</a></div>
+            </div>
+
+            <div class="contact-box">
+              <div class="row-label">Direct number</div>
+              <div class="value"><a href="tel:+18654646313">+1 865 464 6313</a></div>
+            </div>
+
+            <div>
+              <a class="phone-pill" href="tel:+18654646313">Call: +1 865 464 6313</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="gallery-wrap">
+        <h3 class="gallery-title">Production visuals</h3>
+        <div class="gallery">
+          {gallery_html}
+        </div>
+      </section>
+
+      <section id="privacy" class="privacy">
+        <h3>Site notice</h3>
+        <p>
+          This page is a clean company-style presentation created from the details you provided. It is intended as an informational showcase layout and may be customized further for branding, contact workflow, or business presentation use.
+        </p>
+      </section>
+    </div>
+  </main>
 
   <footer>
-    <p>&copy; 2025 HUNANIMA - Tous droits réservés.</p>
+    © 2026 ALBERTO PRODUCTION INC. Presentation layout.
   </footer>
-
 </body>
 </html>
+"""
+
+html_path.write_text(html, encoding="utf-8")
+print(f"Created {html_path}")
