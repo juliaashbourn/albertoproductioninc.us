@@ -1,209 +1,991 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALBERTO PRODUCTION INC</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALBERTO PRODUCTION INC | Motion Picture & Sound Recording</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
-<style>
-:root{
-    --primary:#1e3a5f;
-    --accent:#4da3ff;
-    --dark:#0d1117;
-    --gray:#1c2128;
-    --text:#ffffff;
-}
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg-soft:#0d1b2d;
+      --card:#11233a;
+      --line:rgba(255,255,255,0.08);
+      --text:#f4f7fb;
+      --muted:#b8c4d6;
+      --primary:#4da3ff;
+      --primary-2:#79b8ff;
+      --accent:#e9f3ff;
+      --shadow:0 20px 60px rgba(0,0,0,0.35);
+      --radius:22px;
+      --max:1200px;
+    }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-body{
-    font-family:Arial, sans-serif;
-    background:var(--dark);
-    color:var(--text);
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-/* HEADER */
-header{
-    position:fixed;
-    width:100%;
-    top:0;
-    padding:20px 6%;
-    display:flex;
-    justify-content:space-between;
-    background:rgba(0,0,0,0.8);
-}
+    body{
+      font-family:'Manrope',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(77,163,255,0.10), transparent 35%),
+        radial-gradient(circle at top right, rgba(121,184,255,0.08), transparent 30%),
+        linear-gradient(180deg, #06101c 0%, #091423 45%, #07111f 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
 
-.logo{
-    color:var(--accent);
-    font-weight:bold;
-    font-size:20px;
-    text-decoration:none;
-}
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
 
-/* HERO */
-.hero{
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:url('https://ichef.bbci.co.uk/images/ic/1200x675/p06dmz45.jpg') center/cover;
-}
+    img{
+      max-width:100%;
+      display:block;
+    }
 
-.hero h1{
-    font-size:50px;
-}
+    .container{
+      width:min(var(--max), 92%);
+      margin:0 auto;
+    }
 
-/* SECTIONS */
-section{
-    padding:80px 6%;
-}
+    .section-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem, 4vw, 3.4rem);
+      line-height:1.05;
+      margin-bottom:16px;
+      letter-spacing:-0.02em;
+    }
 
-/* SERVICES */
-.services{
-    background:var(--gray);
-}
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-}
-.card{
-    padding:30px;
-    border:1px solid #333;
-}
-.card h3{
-    color:var(--accent);
-}
+    .section-subtitle{
+      color:var(--muted);
+      max-width:720px;
+      line-height:1.8;
+      font-size:1rem;
+    }
 
-/* WORK */
-.work img{
-    width:100%;
-    height:300px;
-    object-fit:cover;
-}
+    .section-header{
+      margin-bottom:42px;
+    }
 
-/* CONTACT */
-.contact{
-    background:#111;
-}
-.contact p{
-    margin-bottom:10px;
-}
+    /* Header */
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      background:rgba(7,17,31,0.72);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
 
-/* SUPPORT */
-.support{
-    background:#000;
-    text-align:center;
-}
-.support a{
-    color:var(--accent);
-}
+    .nav{
+      width:min(var(--max),92%);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 0;
+      gap:20px;
+    }
 
-/* PRIVACY */
-.privacy{
-    background:#0b0f14;
-}
-.privacy h2{
-    margin-bottom:20px;
-}
-.privacy p{
-    margin-bottom:15px;
-    color:#ccc;
-}
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:30px;
-    border-top:1px solid #222;
-}
-</style>
+    .brand strong{
+      font-size:1rem;
+      font-weight:800;
+      letter-spacing:0.08em;
+    }
+
+    .brand span{
+      color:var(--muted);
+      font-size:0.78rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      font-size:0.95rem;
+      transition:0.25s ease;
+    }
+
+    .nav-links a:hover{
+      color:var(--text);
+    }
+
+    .nav-btn{
+      padding:12px 18px;
+      border:1px solid rgba(77,163,255,0.35);
+      border-radius:999px;
+      color:var(--accent);
+      background:linear-gradient(180deg, rgba(77,163,255,0.12), rgba(77,163,255,0.06));
+      transition:0.25s ease;
+      font-weight:700;
+    }
+
+    .nav-btn:hover{
+      transform:translateY(-2px);
+      border-color:rgba(77,163,255,0.65);
+      box-shadow:0 10px 25px rgba(77,163,255,0.18);
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:130px 0 80px;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(6,13,24,0.92) 0%, rgba(6,13,24,0.80) 35%, rgba(6,13,24,0.42) 62%, rgba(6,13,24,0.55) 100%),
+        url('https://ichef.bbci.co.uk/images/ic/1200x675/p06dmz45.jpg') center/cover no-repeat;
+      z-index:-2;
+      transform:scale(1.02);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:180px;
+      background:linear-gradient(180deg, transparent, rgba(7,17,31,0.95));
+      z-index:-1;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:999px;
+      background:rgba(255,255,255,0.04);
+      color:var(--primary-2);
+      font-size:0.82rem;
+      font-weight:700;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      margin-bottom:22px;
+    }
+
+    .hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(3rem, 7vw, 6.3rem);
+      line-height:0.94;
+      letter-spacing:-0.03em;
+      max-width:760px;
+      margin-bottom:22px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      max-width:720px;
+      font-size:1.05rem;
+      line-height:1.9;
+      margin-bottom:34px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:15px 22px;
+      border-radius:999px;
+      font-weight:800;
+      letter-spacing:0.01em;
+      transition:0.25s ease;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--primary), var(--primary-2));
+      color:#06111f;
+      box-shadow:0 14px 35px rgba(77,163,255,0.28);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 42px rgba(77,163,255,0.35);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.15);
+      color:var(--text);
+      background:rgba(255,255,255,0.03);
+    }
+
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,0.26);
+      background:rgba(255,255,255,0.06);
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .hero-card h3{
+      font-size:1.1rem;
+      margin-bottom:16px;
+    }
+
+    .hero-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .hero-list div{
+      padding:14px 16px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:16px;
+    }
+
+    .hero-list strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:0.94rem;
+    }
+
+    .hero-list span{
+      color:var(--muted);
+      font-size:0.92rem;
+      line-height:1.7;
+    }
+
+    /* Stats */
+    .stats{
+      padding:20px 0 70px;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .stat{
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:26px;
+    }
+
+    .stat h3{
+      font-size:2rem;
+      color:var(--primary-2);
+      margin-bottom:8px;
+    }
+
+    .stat p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:0.94rem;
+    }
+
+    /* About */
+    .about{
+      padding:90px 0;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .about-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:32px;
+      box-shadow:var(--shadow);
+    }
+
+    .about-card p{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:18px;
+    }
+
+    .about-image{
+      overflow:hidden;
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      min-height:100%;
+      box-shadow:var(--shadow);
+    }
+
+    .about-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    /* Services */
+    .services{
+      padding:90px 0;
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .service-card{
+      padding:30px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      transition:0.25s ease;
+    }
+
+    .service-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(77,163,255,0.26);
+      box-shadow:0 18px 40px rgba(0,0,0,0.22);
+    }
+
+    .service-number{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(77,163,255,0.12);
+      color:var(--primary-2);
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    .service-card h3{
+      margin-bottom:14px;
+      font-size:1.15rem;
+    }
+
+    .service-card p{
+      color:var(--muted);
+      line-height:1.85;
+      font-size:0.96rem;
+    }
+
+    /* Portfolio */
+    .portfolio{
+      padding:90px 0;
+    }
+
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:20px;
+    }
+
+    .portfolio-left,
+    .portfolio-right{
+      display:grid;
+      gap:20px;
+    }
+
+    .portfolio-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:26px;
+      border:1px solid var(--line);
+      min-height:260px;
+      box-shadow:var(--shadow);
+      isolation:isolate;
+    }
+
+    .portfolio-card.large{
+      min-height:540px;
+    }
+
+    .portfolio-card.medium{
+      min-height:260px;
+    }
+
+    .portfolio-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform 0.6s ease;
+    }
+
+    .portfolio-card:hover img{
+      transform:scale(1.05);
+    }
+
+    .portfolio-overlay{
+      position:absolute;
+      inset:auto 0 0 0;
+      padding:24px;
+      background:linear-gradient(180deg, transparent, rgba(7,17,31,0.94));
+      z-index:1;
+    }
+
+    .portfolio-overlay h3{
+      margin-bottom:8px;
+      font-size:1.05rem;
+    }
+
+    .portfolio-overlay p{
+      color:#d3deeb;
+      font-size:0.94rem;
+      line-height:1.75;
+    }
+
+    /* Support / Contact */
+    .contact-support{
+      padding:90px 0;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .panel{
+      border-radius:26px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      padding:32px;
+      box-shadow:var(--shadow);
+    }
+
+    .panel h3{
+      font-size:1.35rem;
+      margin-bottom:18px;
+    }
+
+    .panel p{
+      color:var(--muted);
+      line-height:1.85;
+      margin-bottom:12px;
+    }
+
+    .contact-list{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .contact-item{
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .contact-item strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:0.95rem;
+    }
+
+    .contact-item span,
+    .contact-item a{
+      color:var(--muted);
+      font-size:0.95rem;
+      line-height:1.7;
+      word-break:break-word;
+    }
+
+    .support-badge{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(77,163,255,0.12);
+      color:var(--primary-2);
+      font-size:0.78rem;
+      font-weight:800;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+
+    /* Privacy */
+    .privacy{
+      padding:90px 0;
+    }
+
+    .privacy-box{
+      border-radius:28px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      padding:40px;
+      box-shadow:var(--shadow);
+    }
+
+    .privacy-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:24px;
+      margin-top:28px;
+    }
+
+    .privacy-item{
+      padding:24px;
+      border-radius:22px;
+      background:rgba(255,255,255,0.025);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .privacy-item h4{
+      margin-bottom:10px;
+      font-size:1rem;
+      color:var(--accent);
+    }
+
+    .privacy-item p{
+      color:var(--muted);
+      line-height:1.85;
+      font-size:0.95rem;
+    }
+
+    /* Footer */
+    footer{
+      padding:28px 0 40px;
+      border-top:1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .footer-left p,
+    .footer-right a{
+      color:var(--muted);
+      font-size:0.92rem;
+    }
+
+    .footer-right{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .footer-right a:hover{
+      color:var(--text);
+    }
+
+    /* Responsive */
+    @media (max-width: 1080px){
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .portfolio-grid,
+      .privacy-grid{
+        grid-template-columns:1fr;
+      }
+
+      .services-grid,
+      .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .nav-links{
+        gap:14px;
+      }
+
+      .hero{
+        padding-top:170px;
+      }
+
+      .services-grid,
+      .stats-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-title{
+        font-size:2.1rem;
+      }
+
+      .privacy-box,
+      .panel,
+      .about-card{
+        padding:24px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<a href="#" class="logo">ALBERTO PRODUCTION INC</a>
-</header>
+  <header>
+    <div class="nav">
+      <a href="#home" class="brand">
+        <strong>ALBERTO PRODUCTION INC</strong>
+        <span>Motion Picture & Sound Recording</span>
+      </a>
 
-<!-- HERO -->
-<section class="hero">
-<div>
-<h1>Film & Media Production</h1>
-<p>Professional Motion Picture & Sound Services</p>
-</div>
-</section>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Productions</a>
+        <a href="#support">Support</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#contact" class="nav-btn">Contact Us</a>
+      </nav>
+    </div>
+  </header>
 
-<!-- SERVICES -->
-<section class="services">
-<h2>Our Services</h2>
-<div class="grid">
-<div class="card">
-<h3>Video Production</h3>
-<p>Full-service filming and editing solutions.</p>
-</div>
-<div class="card">
-<h3>Sound Recording</h3>
-<p>Studio-quality recording and mixing.</p>
-</div>
-<div class="card">
-<h3>Post Production</h3>
-<p>Editing, color grading, and effects.</p>
-</div>
-</div>
-</section>
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Creative Production Studio</div>
+          <h1>Modern film production with a premium studio presence.</h1>
+          <p>
+            ALBERTO PRODUCTION INC provides motion picture, media production, and sound recording services with a strong focus on quality, presentation, and client support. Our company is built to serve production needs with a clear and professional public presence.
+          </p>
 
-<!-- WORK -->
-<section class="work">
-<h2>Our Work</h2>
-<div class="grid">
-<img src="https://www.kino-teatr.ru/news/27466/243316.jpg">
-<img src="https://vitrina.ai/wp-content/uploads/2024/08/Movie-Production.webp">
-<img src="https://www.jjagency.co/wp-content/uploads/2023/01/dubai-abu-dhabi-uae-video-production-services.webp">
-<img src="https://i.ytimg.com/vi/ECSfMxHAFpI/maxresdefault.jpg">
-</div>
-</section>
+          <div class="hero-actions">
+            <a href="#portfolio" class="btn btn-primary">View Productions</a>
+            <a href="#support" class="btn btn-secondary">Customer Support</a>
+          </div>
+        </div>
 
-<!-- CONTACT -->
-<section class="contact">
-<h2>Contact</h2>
-<p><strong>Company:</strong> ALBERTO PRODUCTION INC</p>
-<p><strong>Email:</strong> info@albertoproductioninc.us</p>
-<p><strong>Phone:</strong> +1 865 464 6313</p>
-</section>
+        <div class="hero-card">
+          <h3>Company Overview</h3>
+          <div class="hero-list">
+            <div>
+              <strong>Company Name</strong>
+              <span>ALBERTO PRODUCTION INC</span>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span>info@albertoproductioninc.us</span>
+            </div>
+            <div>
+              <strong>Phone</strong>
+              <span>+1 865 464 6313</span>
+            </div>
+            <div>
+              <strong>Support Availability</strong>
+              <span>Monday – Friday, 9:00 AM – 6:00 PM EST</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- SUPPORT -->
-<section class="support">
-<h2>Customer Support</h2>
-<p>If you need assistance, please contact us:</p>
-<p>Email: info@albertoproductioninc.us</p>
-<p>Phone: +1 865 464 6313</p>
-<a href="mailto:info@albertoproductioninc.us">Contact Support</a>
-</section>
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat">
+            <h3>Studio</h3>
+            <p>Professional production identity with a clear digital presence for clients and partners.</p>
+          </div>
+          <div class="stat">
+            <h3>Media</h3>
+            <p>Motion picture and sound recording services presented in a structured, accessible format.</p>
+          </div>
+          <div class="stat">
+            <h3>Support</h3>
+            <p>Dedicated support details publicly available for customer communication and assistance.</p>
+          </div>
+          <div class="stat">
+            <h3>Privacy</h3>
+            <p>Transparent privacy information published for professional trust and compliance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- PRIVACY -->
-<section class="privacy">
-<h2>Privacy Policy</h2>
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">A polished company website, not a placeholder.</h2>
+          <p class="section-subtitle">
+            This presentation is designed to make the business look established, organized, and ready for public-facing services. The goal is to show a real production company identity with clean structure, visible support information, and a stronger visual impression.
+          </p>
+        </div>
 
-<p>ALBERTO PRODUCTION INC values your privacy and is committed to protecting your personal information.</p>
+        <div class="about-grid">
+          <div class="about-card">
+            <p>
+              ALBERTO PRODUCTION INC operates in the motion picture and sound recording space with a focus on visual storytelling, production development, media support, and client communication.
+            </p>
+            <p>
+              Our website is intended to provide a professional public overview of the company, its production direction, and its contact and support information.
+            </p>
+            <p>
+              Whether the inquiry is business-related, technical, or service-oriented, our team remains available through the support channels listed below.
+            </p>
+          </div>
 
-<p>We may collect basic contact details such as your email address and phone number when you reach out to us for services or support.</p>
+          <div class="about-image">
+            <img src="https://www.kino-teatr.ru/news/27466/243316.jpg" alt="Film production set">
+          </div>
+        </div>
+      </div>
+    </section>
 
-<p>Your information is used strictly for communication, service delivery, and improving our business operations.</p>
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Production services with a stronger brand presentation.</h2>
+          <p class="section-subtitle">
+            The layout below is built to feel more like a real studio website: more polished cards, better spacing, better hierarchy, and more premium visual balance.
+          </p>
+        </div>
 
-<p>We do not sell, trade, or share your personal data with third parties except when required by law.</p>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-number">01</div>
+            <h3>Video Production</h3>
+            <p>
+              Professional media production services for commercial, promotional, and cinematic projects, from creative planning through visual delivery.
+            </p>
+          </div>
 
-<p>We implement reasonable security measures to safeguard your data from unauthorized access.</p>
+          <div class="service-card">
+            <div class="service-number">02</div>
+            <h3>Sound Recording</h3>
+            <p>
+              Audio capture, recording coordination, and sound-related production support designed for clear, professional-quality output.
+            </p>
+          </div>
 
-<p>By using this website, you agree to the terms outlined in this privacy policy.</p>
+          <div class="service-card">
+            <div class="service-number">03</div>
+            <h3>Post Production</h3>
+            <p>
+              Editing, finishing, presentation refinement, and media organization delivered with attention to structure and professional detail.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<p>If you have any questions, contact us at info@albertoproductioninc.us</p>
-</section>
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Selected production visuals.</h2>
+          <p class="section-subtitle">
+            These visual sections make the site look richer and more complete, instead of basic blocks with random sample spacing.
+          </p>
+        </div>
 
-<footer>
-© 2026 ALBERTO PRODUCTION INC
-</footer>
+        <div class="portfolio-grid">
+          <div class="portfolio-left">
+            <div class="portfolio-card large">
+              <img src="https://vitrina.ai/wp-content/uploads/2024/08/Movie-Production.webp" alt="Movie production">
+              <div class="portfolio-overlay">
+                <h3>Motion Picture Development</h3>
+                <p>Professional cinematic production imagery presented in a stronger, more premium layout.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-right">
+            <div class="portfolio-card medium">
+              <img src="https://www.jjagency.co/wp-content/uploads/2023/01/dubai-abu-dhabi-uae-video-production-services.webp" alt="Video production services">
+              <div class="portfolio-overlay">
+                <h3>Production Services</h3>
+                <p>Creative and technical support for filmed media and production workflows.</p>
+              </div>
+            </div>
+
+            <div class="portfolio-card medium">
+              <img src="https://i.ytimg.com/vi/ECSfMxHAFpI/maxresdefault.jpg" alt="Studio production scene">
+              <div class="portfolio-overlay">
+                <h3>Studio Direction</h3>
+                <p>Premium visual presentation with stronger composition and website structure.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-support" id="support">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="panel" id="contact">
+            <h3>Company Contact</h3>
+            <p>
+              Public company information is provided here for general communication, production inquiries, and business-related contact.
+            </p>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <strong>Company</strong>
+                <span>ALBERTO PRODUCTION INC</span>
+              </div>
+              <div class="contact-item">
+                <strong>Email</strong>
+                <a href="mailto:info@albertoproductioninc.us">info@albertoproductioninc.us</a>
+              </div>
+              <div class="contact-item">
+                <strong>Phone</strong>
+                <a href="tel:+18654646313">+1 865 464 6313</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="support-badge">Customer Support</div>
+            <h3>Dedicated support information</h3>
+            <p>
+              If you need assistance regarding company services, communication, or public-facing support requests, please use the support contact information below.
+            </p>
+            <p>
+              Our support channels are publicly available for customer communication and general service-related inquiries.
+            </p>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <strong>Support Email</strong>
+                <a href="mailto:info@albertoproductioninc.us?subject=Support%20Request">info@albertoproductioninc.us</a>
+              </div>
+              <div class="contact-item">
+                <strong>Support Phone</strong>
+                <a href="tel:+18654646313">+1 865 464 6313</a>
+              </div>
+              <div class="contact-item">
+                <strong>Availability</strong>
+                <span>Monday – Friday, 9:00 AM – 6:00 PM EST</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <div class="container">
+        <div class="privacy-box">
+          <div class="section-header">
+            <h2 class="section-title">Privacy Policy</h2>
+            <p class="section-subtitle">
+              ALBERTO PRODUCTION INC respects the privacy of visitors, clients, and business contacts. This policy explains, in general terms, how information may be handled through this website and related communications.
+            </p>
+          </div>
+
+          <div class="privacy-grid">
+            <div class="privacy-item">
+              <h4>Information Submitted</h4>
+              <p>
+                When visitors contact our company, we may receive information such as names, email addresses, phone numbers, and the content of submitted messages or support requests.
+              </p>
+            </div>
+
+            <div class="privacy-item">
+              <h4>Use of Information</h4>
+              <p>
+                Submitted information may be used to respond to inquiries, provide support, communicate about services, and maintain general business correspondence.
+              </p>
+            </div>
+
+            <div class="privacy-item">
+              <h4>Website Operations</h4>
+              <p>
+                Basic technical data may be collected automatically through normal website functionality, including browser-related information used to improve site performance and accessibility.
+              </p>
+            </div>
+
+            <div class="privacy-item">
+              <h4>Data Protection</h4>
+              <p>
+                We take reasonable operational steps to protect information from unauthorized access, misuse, or disclosure, while recognizing that no online system can guarantee absolute security.
+              </p>
+            </div>
+
+            <div class="privacy-item">
+              <h4>Third-Party Content</h4>
+              <p>
+                Some visual or embedded website content may be delivered through external platforms or services, which may apply their own privacy or technical policies.
+              </p>
+            </div>
+
+            <div class="privacy-item">
+              <h4>Contact Regarding Privacy</h4>
+              <p>
+                Questions about this privacy policy or about website communication may be directed to: info@albertoproductioninc.us
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-left">
+        <p>© 2026 ALBERTO PRODUCTION INC. All rights reserved.</p>
+      </div>
+      <div class="footer-right">
+        <a href="#about">About</a>
+        <a href="#portfolio">Productions</a>
+        <a href="#support">Support</a>
+        <a href="#privacy">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
